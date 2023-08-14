@@ -13,16 +13,16 @@ router.post("/bookroom", async (req, res) => {
         const customer = await stripe.customers.create({
             email: token.email,
             source: token.id
-        })
+        }) 
 
         const payment = await stripe.charges.create({
 
             amount: totalamount * 100,
             customer: customer.id,
-            currency: "PKR",
+            currency: "pkr",
             receipt_email: token.email
         }, {
-            idempotensykey: uuidv4()
+            idempotencyKey: uuidv4()
         }
         )
         if (payment) {
@@ -36,7 +36,7 @@ router.post("/bookroom", async (req, res) => {
                 todate: moment(todate).format("DD-MM-YYYY"),     // Correct this line
                 totalamount,
                 totaldays,
-                transactionId: "1234",
+                transactionId: " ",
             });
                 const booking = await newbooking.save()
                 const roomtemp = await Room.findOne({ _id: room._id });
@@ -49,7 +49,7 @@ router.post("/bookroom", async (req, res) => {
                 });
                 await roomtemp.save()
 
-                
+            
             
         }
         res.send("Payment Successful, Your Room is booked")
