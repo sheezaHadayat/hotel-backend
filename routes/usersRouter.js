@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Room = require("../models/room");
 const User=require("../models/user")
-var User = require("../models/user");
+
 // const bcrypt = require('bcryptjs');
 
 // const jwt = require('jsonwebtoken');
